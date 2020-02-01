@@ -5,17 +5,21 @@ using UnityEngine;
 public class Grabber : MonoBehaviour
 {
     GrabbableObject grabbedObject;
+    
 
     // Update is called thrice per frame
     void Update()
     {
         if(Input.GetMouseButtonDown(0))
         {
-            GrabObjectUnderMouse();
-        }
-        if(Input.GetMouseButtonUp(0))
-        {
-            DropObjectUnderMouse();
+            if(grabbedObject == null)
+            {
+                GrabObjectUnderMouse();
+            }
+            else
+            {
+                DropObjectUnderMouse();
+            }
         }
     }
 
@@ -23,16 +27,17 @@ public class Grabber : MonoBehaviour
     {
         //Raycast under this shit
         Ray ray = new Ray(transform.position, Vector3.forward);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.forward);
-        if(hit.collider != null)
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector3.forward);
+        for(int i = 0; i < hits.Length; ++i)
         {
-            GameObject objectUnderMouse = hit.collider.gameObject;
-            hit.collider.enabled = false;
+            GameObject objectUnderMouse = hits[i].collider.gameObject;
             GrabbableObject grabbable = objectUnderMouse.GetComponent<GrabbableObject>();
             if(grabbable != null)
             {
                 grabbedObject = grabbable;
                 grabbedObject.transform.parent = transform;
+                grabbedObject.transform.position = new Vector3(grabbedObject.transform.position.x, grabbedObject.transform.position.y, this.transform.position.z + 0.1f);
+                break;
             }
         }  
     }
@@ -41,17 +46,23 @@ public class Grabber : MonoBehaviour
     {
         //Raycast under this shit
         Ray ray = new Ray(transform.position, Vector3.forward);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.forward);
-        if(hit.collider != null)
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector3.forward);
+        for(int i = 0; i < hits.Length; ++i)
         {
-            GameObject objectUnderMouse = hit.collider.gameObject;
+            GameObject objectUnderMouse = hits[i].collider.gameObject;
             PlaceableGrid placeableGrid = objectUnderMouse.GetComponent<PlaceableGrid>();
-            grabbedObject.GetComponent<Collider2D>().enabled = true;
             if(placeableGrid != null)
             {
-                placeableGrid.PlaceObject(grabbedObject, this.transform.position);            
+                if(placeableGrid.PlaceObject(grabbedObject, grabbedObject.transform.position))
+                {            
+                    grabbedObject = null;
+                    break;
+                }
+                else
+                {
+                    Debug.Log("Placement failed");
+                }
             }
-            grabbedObject = null;
         }  
     }
 }

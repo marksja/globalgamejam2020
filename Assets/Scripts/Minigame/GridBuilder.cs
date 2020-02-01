@@ -45,7 +45,7 @@ public class GridBuilder : MonoBehaviour
             GameObject obj = new GameObject();
             obj.transform.parent = gridBoxParent.transform;
 
-            //Silly Jacob, we don't need a collider
+            //Silly Jacob, we don't need colliders
             //BoxCollider2D collider = obj.AddComponent<BoxCollider2D>();
             //collider.size = gridBoxSize;
 
@@ -53,6 +53,59 @@ public class GridBuilder : MonoBehaviour
             obj.name = "(" + i % (int)gridLayout.x + ", " + Mathf.FloorToInt(i / gridLayout.x) + ")";
             gridBoxes.Add(obj);
         } 
+    }
+
+    public GameObject GetClosestGridLocatorObject(Vector3 position)
+    {
+        int index = GetGridIndexFromPosition(position);
+        if(index != -1 && index < gridBoxes.Count)
+        {
+            return gridBoxes[index];
+        }
+        return null;
+    }  
+
+    public GameObject GetRandomGridLocatorForType<T>(bool allowOnlyEmpty) where T : Component
+    {
+        int randomStart = Random.Range(0, gridBoxes.Count);
+        int returnBox = randomStart;
+        do
+        {
+            if(returnBox >= gridBoxes.Count)
+            {
+                returnBox = returnBox % gridBoxes.Count;
+            }    
+
+            if(!allowOnlyEmpty || !IsGridLocationOccupiedByType<T>(returnBox))
+            {
+                return gridBoxes[returnBox];
+            }
+
+            returnBox++;
+
+        } while (returnBox != randomStart );
+        
+        return null;
+    }
+
+    public bool IsGridLocationOccupiedByType<T>(int x, int y) where T : Component
+    {
+        return IsGridLocationOccupiedByType<T>(x + y * (int)gridLayout.x);
+    }
+
+    public bool IsGridLocationOccupiedByType<T>(int index) where T : Component
+    {
+        return gridBoxes[index].GetComponentInChildren<T>() != null;
+    }
+
+    public GameObject GetGridLocatorObject(int x, int y)
+    {
+        int index = x + y * (int)gridLayout.x;
+        if(index < gridBoxes.Count)
+        {
+            return gridBoxes[index];
+        }
+        return null;
     }
 
     public Vector3 GetPositionFromGridCoordinates(int x, int y)
@@ -90,17 +143,5 @@ public class GridBuilder : MonoBehaviour
         }
 
         return closestIndex;
-    }
-
-    public void OnMouseDown()
-    {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
-        Debug.Log(GetClosestGridCoordinatesFromPosition(mousePosition));
-    }
-
-    public void OnMouseUp()
-    {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
-        Debug.Log(GetClosestGridCoordinatesFromPosition(mousePosition));
     }
 }
