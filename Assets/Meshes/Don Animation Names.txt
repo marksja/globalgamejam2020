@@ -1,0 +1,5 @@
+Idle
+Greeting
+GreetingLoop
+Negative
+NegativeLoop
