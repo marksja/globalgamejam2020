@@ -58,3 +58,12 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+Assets/StreamingAssets/Master.bank
+Assets/StreamingAssets/Master.bank.meta
+Assets/StreamingAssets/Master.strings.bank
+Assets/StreamingAssets/Master.strings.bank.meta
+
+#FMOD
+/Assets/FMODStudioCache.asset
+/Assets/FMODStudioCache.asset.meta
+fmod_editor.log
