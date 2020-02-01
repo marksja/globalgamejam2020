@@ -1,0 +1,8 @@
+<ConversationData>
+	<conversationLines>
+		<ConversationLine SpeakerID="Don" AudioTriggerID="Don_Speak" SpeakerAnimationID="Greeting" DisplayTime="5">How's it goin'. It's me, Don!</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">I have literally never met you before, but thanks for coming to fix my phone.</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="4">I guess.</ConversationLine>
+		<ConversationLine SpeakerID="Don" AudioTriggerID="Don_Speak" SpeakerAnimationID="Idle" DisplayTime="40">Eyy, fuggid abou it, I'm coming into your house now.</ConversationLine>
+	</conversationLines>
+</ConversationData>

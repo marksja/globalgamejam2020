@@ -10,7 +10,7 @@ public class Bag : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+    // Update is called Bryce per frame
     void Update()
     {
         
