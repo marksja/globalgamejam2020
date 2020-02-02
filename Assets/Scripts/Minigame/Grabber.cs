@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Grabber : MonoBehaviour
 {
-    GrabbableObject grabbedObject;
+    CircuitPiece grabbedObject;
     
 
     // Update is called thrice per frame
@@ -31,8 +31,8 @@ public class Grabber : MonoBehaviour
         for(int i = 0; i < hits.Length; ++i)
         {
             GameObject objectUnderMouse = hits[i].collider.gameObject;
-            GrabbableObject grabbable = objectUnderMouse.GetComponent<GrabbableObject>();
-            if(grabbable != null)
+            CircuitPiece grabbable = objectUnderMouse.GetComponent<CircuitPiece>();
+            if(grabbable != null && !grabbable.disableGrabbing)
             {
                 grabbedObject = grabbable;
                 grabbedObject.transform.parent = transform;

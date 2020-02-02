@@ -6,6 +6,8 @@ public class PlaceableGrid : MonoBehaviour
 {
     public GridBuilder underlyingGrid;
 
+    public bool onlyAllowMatchingPieces;
+
     public bool PlaceObject<T>(T grabbable, bool checkForEmpty) where T : Component
     {
         GameObject newParent = underlyingGrid.GetRandomGridLocatorForType<T>(checkForEmpty);
@@ -20,7 +22,21 @@ public class PlaceableGrid : MonoBehaviour
         return true;
     }
 
-    public bool PlaceObject(GrabbableObject grabbable, Vector3 position)
+    public bool PlaceObjectAt<T>(T obj, int index) where T : Component
+    {
+        GameObject newParent = underlyingGrid.GetGridLocatorObject(index);
+
+        if(newParent == null)
+        {
+            return false;
+        }
+
+        obj.transform.parent = newParent.transform;
+        obj.transform.localPosition = new Vector3(0, 0, obj.transform.localPosition.z);
+        return true;
+    }
+
+    public bool PlaceObject(CircuitPiece grabbable, Vector3 position)
     {
         GameObject newParent = underlyingGrid.GetClosestGridLocatorObject(position);
 
@@ -30,26 +46,30 @@ public class PlaceableGrid : MonoBehaviour
         }
 
         //Check that nothing's already here
-        GrabbableObject[] grabbablesInGrid = newParent.GetComponentsInChildren<GrabbableObject>();
+        CircuitPiece[] grabbablesInGrid = newParent.GetComponentsInChildren<CircuitPiece>();
 
-        if(grabbablesInGrid.Length > 0)
+        foreach(CircuitPiece piece in grabbablesInGrid)
         {
+            if(piece.type == GrabbableObjectType.Missing && (piece.partType == grabbable.partType || !onlyAllowMatchingPieces))
+            {
+                continue;
+            }
             return false;
         }
 
         grabbable.transform.parent = newParent.transform;
-        grabbable.transform.localPosition = Vector3.back * 0.1f;
+        grabbable.transform.localPosition = new Vector3(0,0, grabbable.transform.localPosition.z);
         return true;
     }
 
     public int GetNumberOfGrabbableObjectsInGrid()
     {
-        return GetNumberOfChildrenWithComponent<GrabbableObject>();
+        return GetNumberOfChildrenWithComponent<CircuitPiece>();
     }
 
     public int GetNumberOfBrokenObjectsInGrid()
     {
-        return GetNumberOfGrabbablesWithType(GrabbableObjectType.Trash);
+        return GetNumberOfGrabbablesWithType(GrabbableObjectType.Broken);
     }
 
     public int GetNumberOfCorrectObjectsInGrid()
@@ -64,9 +84,9 @@ public class PlaceableGrid : MonoBehaviour
 
     int GetNumberOfGrabbablesWithType(GrabbableObjectType type)
     {
-        List<GrabbableObject> grabbablesInThisGrid = GetChildrenWithComponent<GrabbableObject>();
+        List<CircuitPiece> grabbablesInThisGrid = GetChildrenWithComponent<CircuitPiece>();
         int count = 0;
-        foreach(GrabbableObject obj in grabbablesInThisGrid)
+        foreach(CircuitPiece obj in grabbablesInThisGrid)
         {
             if(obj.type == type)
             {

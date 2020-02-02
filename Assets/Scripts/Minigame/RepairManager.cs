@@ -6,73 +6,105 @@ public class RepairManager : MonoBehaviour
 {
     public PlaceableGrid bag;
     public PlaceableGrid phone;
-    public PlaceableGrid trash;
+    public PlaceableGrid wiretapGrid;
 
-    public bool randomPhoneLayout; 
-
-    public int trashAmount;
-    public List<GameObject> trashObjectsToSpawn;
-    public int partsAmount;
-    public List<GameObject> partsToSpawn;
+    public int numBrokenParts;
+    public List<GameObject> partsList;
     public GameObject bugToSpawn;
 
+    public List<CircuitLocation> locationInfo;
 
-    List<Vector2> correctPartLocations;
-    Vector2 correctBugLocation;
-
+    List<CircuitPiece> circuitPieces;
 
     // Start is called before the first frame update
     void Start()
     {
-        correctPartLocations = new List<Vector2>();
+        circuitPieces = new List<CircuitPiece>();
     }
     
     [ContextMenu("Create Puzzle")]
     public void CreatePuzzle()
     {
+        Shuffle(ref partsList);
+        int partListIndex = 0;
+        for(int i = 0; i < phone.underlyingGrid.GetNumGridLocations(); ++i)
+        {
+            if(partListIndex >= partsList.Count)
+            {
+                partListIndex = partListIndex % partsList.Count;
+            }
+            
+            while(locationInfo.Count > i && locationInfo[i].disallowedParts.Contains(partListIndex+1))
+            {
+                partListIndex++;
+                if(partListIndex >= partsList.Count)
+                {
+                    partListIndex = partListIndex % partsList.Count;
+                }
+            }
+            
+            //Spawn a correct part and a missing part at each location
+            GameObject part = Instantiate(partsList[partListIndex], Vector3.back * 0.4f, Quaternion.identity);
+            GameObject placement = Instantiate(partsList[partListIndex], Vector3.back * 0.3f, Quaternion.identity);
+
+            CircuitPiece partPiece = part.GetComponent<CircuitPiece>();
+            CircuitPiece placementPiece = placement.GetComponent<CircuitPiece>();
+
+            partPiece.type = GrabbableObjectType.Part;
+            partPiece.disableGrabbing = true;
+            placementPiece.type = GrabbableObjectType.Missing;
+            placementPiece.disableGrabbing = true;
+
+            //Place them both on the grid
+            phone.PlaceObjectAt<CircuitPiece>(partPiece, i);
+            phone.PlaceObjectAt<CircuitPiece>(placementPiece, i);
+            partPiece.SetGameObjectSprite();
+            placementPiece.SetGameObjectSprite();
+
+            circuitPieces.Add(partPiece);
+
+            partListIndex++;
+        }
         
-        for(int i =0; i < trashAmount; ++i)
+        Shuffle(ref circuitPieces);
+        int j = 0;
+        for(; j < numBrokenParts; ++j)
         {
-            int trashToSpawn = Random.Range(0, trashObjectsToSpawn.Count);
-            GameObject trash = Instantiate(trashObjectsToSpawn[trashToSpawn], Vector3.zero, Quaternion.identity);
-            GrabbableObject trashGrabbable = trash.GetComponent<GrabbableObject>();
-
-            if(trashGrabbable == null)
+            if(j < circuitPieces.Count)
             {
-                trashGrabbable = trash.AddComponent<GrabbableObject>();
+                //Replace the part here with a broken one
+                circuitPieces[j].type = GrabbableObjectType.Broken;
+                circuitPieces[j].disableGrabbing = false;
+                circuitPieces[j].SetGameObjectSprite();
+
+                //And spawn a correct one in the bag
+                GameObject correctPart = Instantiate(circuitPieces[j].gameObject, Vector3.back * 0.4f, Quaternion.identity);
+                CircuitPiece piece = correctPart.GetComponent<CircuitPiece>();
+                piece.type = GrabbableObjectType.Part;
+                piece.SetGameObjectSprite();
+                //TODO: Replace this with placing it on the table
+                bag.PlaceObjectAt<CircuitPiece>(piece, j);
             }
-
-            trashGrabbable.type = GrabbableObjectType.Trash;
-            phone.PlaceObject<GrabbableObject>(trashGrabbable, true);
         }
 
-        for(int  i = 0; i < partsAmount; ++i)
-        {
-            int partToSpawn = Random.Range(0, partsToSpawn.Count);
-            GameObject part = Instantiate(partsToSpawn[partToSpawn], Vector3.zero, Quaternion.identity);
-            GrabbableObject partGrabbable = part.GetComponent<GrabbableObject>();
+        GameObject bug = Instantiate(bugToSpawn, Vector3.back * 0.4f, Quaternion.identity);
+        GameObject bugHolder = Instantiate(bugToSpawn, Vector3.back * 0.4f, Quaternion.identity);
+        CircuitPiece bugGrabbable = bug.GetComponent<CircuitPiece>();
+        CircuitPiece bugHolderGrabbable = bugHolder.GetComponent<CircuitPiece>();
 
-            if(partGrabbable == null)
-            {
-                partGrabbable = part.AddComponent<GrabbableObject>();
-            }
+        bugHolderGrabbable.disableGrabbing = true;
+        bugHolderGrabbable.partType = 0;
+        bugHolderGrabbable.type = GrabbableObjectType.Missing;
+        bugHolderGrabbable.SetGameObjectSprite();
 
-            partGrabbable.type = GrabbableObjectType.Part;
-            bag.PlaceObject<GrabbableObject>(partGrabbable, true);
-            correctPartLocations.Add(Vector2.one);
-        }
+        bugGrabbable.disableGrabbing = false;
+        bugGrabbable.partType = 0;
+        bugGrabbable.type = GrabbableObjectType.Part;
+        bugGrabbable.SetGameObjectSprite();
 
-        GameObject bug = Instantiate(bugToSpawn, Vector3.zero, Quaternion.identity);
-        GrabbableObject bugGrabbable = bug.GetComponent<GrabbableObject>();
-
-        if(bugGrabbable == null)
-        {
-            bugGrabbable = bug.AddComponent<GrabbableObject>();
-        }
-
-        bugGrabbable.type = GrabbableObjectType.Bug;
-        bag.PlaceObject<GrabbableObject>(bugGrabbable, true);
-
+        //TODO: Replace this with placing it on the table
+        bag.PlaceObjectAt<CircuitPiece>(bugGrabbable, j);
+        wiretapGrid.PlaceObjectAt<CircuitPiece>(bugHolderGrabbable, 0);
     }
 
     public void AttemptToFinishPuzzle()
@@ -91,14 +123,14 @@ public class RepairManager : MonoBehaviour
     {
         int numBroken = phone.GetNumberOfBrokenObjectsInGrid();
         int numCorrect = phone.GetNumberOfCorrectObjectsInGrid();
-        int numBugs = phone.GetNumberOfBugsInGrid();
+        int numBugs = wiretapGrid.GetNumberOfBugsInGrid();
 
         if(numBroken > 0)
         {
             return false;
         }
 
-        if(numCorrect != correctPartLocations.Count)
+        if(numCorrect != circuitPieces.Count)
         {
             return false;
         }
@@ -110,4 +142,24 @@ public class RepairManager : MonoBehaviour
 
         return true;
     }
+
+    public void Shuffle<T>(ref List<T> list)  
+    {  
+        int n = list.Count;  
+        while (n > 1) {  
+            n--;  
+            int k = Random.Range(0, n + 1);  
+            T value = list[k];  
+            list[k] = list[n];  
+            list[n] = value;  
+        }  
+    }
 }
+
+[System.Serializable]
+public class CircuitLocation
+{
+    public List<int> disallowedParts;
+}
+
+

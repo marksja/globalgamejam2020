@@ -1,5 +1,93 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4449621210245821157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2374616576023355692}
+  - component: {fileID: 8001496691992754182}
+  - component: {fileID: 9218700607883759756}
+  - component: {fileID: 1773343344782906813}
+  m_Layer: 0
+  m_Name: Wiretap Grid - It gets one all to itself
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2374616576023355692
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4449621210245821157}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.61, y: -0.25, z: -0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6763292469836016075}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &8001496691992754182
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4449621210245821157}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5, y: 10}
+  m_EdgeRadius: 0
+--- !u!114 &9218700607883759756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4449621210245821157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 479fa90590496a94e943274d56400d73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridLayout: {x: 1, y: 1}
+  gridBoxParent: {fileID: 4449621210245821157}
+  gridBoxBounds: {fileID: 8001496691992754182}
+--- !u!114 &1773343344782906813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4449621210245821157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be36f4f463349d04c8e7c49991ba8101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  underlyingGrid: {fileID: 9218700607883759756}
+  onlyAllowMatchingPieces: 1
 --- !u!1 &6607365151907641715
 GameObject:
   m_ObjectHideFlags: 0
@@ -27,12 +115,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6607365151907641715}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.5, y: -3.8, z: -1}
+  m_LocalPosition: {x: -2, y: -4.5, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8776144959468215439}
   m_Father: {fileID: 6763292469836016075}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2875095832826256271
 SpriteRenderer:
@@ -257,7 +345,7 @@ Transform:
   m_Children:
   - {fileID: 6763292467875341877}
   m_Father: {fileID: 6763292469836016075}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6763292468118285137
 MonoBehaviour:
@@ -382,7 +470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6763292468426414535
 Transform:
   m_ObjectHideFlags: 0
@@ -396,7 +484,7 @@ Transform:
   m_Children:
   - {fileID: 6763292468261248033}
   m_Father: {fileID: 6763292469836016075}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &6763292468426414528
 BoxCollider2D:
@@ -452,6 +540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   underlyingGrid: {fileID: 4738748403669702131}
+  onlyAllowMatchingPieces: 0
 --- !u!1 &6763292468611504181
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,7 +616,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 3, y: 9}
+  m_Size: {x: 5, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -560,12 +649,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6763292469298493705}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.5, y: 0, z: -0.1}
+  m_LocalPosition: {x: 6.5, y: 0, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6763292468611504182}
   m_Father: {fileID: 6763292469836016075}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &6763292469298493707
 BoxCollider2D:
@@ -591,7 +680,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 9}
+  m_Size: {x: 5, y: 10}
   m_EdgeRadius: 0
 --- !u!114 &7673207111649154755
 MonoBehaviour:
@@ -605,7 +694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479fa90590496a94e943274d56400d73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridLayout: {x: 2, y: 6}
+  gridLayout: {x: 2, y: 3}
   gridBoxParent: {fileID: 6763292468611504181}
   gridBoxBounds: {fileID: 6763292469298493707}
 --- !u!114 &8397366328076999275
@@ -621,6 +710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   underlyingGrid: {fileID: 7673207111649154755}
+  onlyAllowMatchingPieces: 0
 --- !u!1 &6763292469336541346
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,12 +819,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6763292469388555195}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalPosition: {x: -2, y: 0, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6763292469586952310}
   m_Father: {fileID: 6763292469836016075}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &6763292469388555173
 BoxCollider2D:
@@ -760,7 +850,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 12, y: 9}
+  m_Size: {x: 11, y: 8}
   m_EdgeRadius: 0
 --- !u!114 &435174243144958955
 MonoBehaviour:
@@ -774,7 +864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479fa90590496a94e943274d56400d73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridLayout: {x: 8, y: 6}
+  gridLayout: {x: 3, y: 2}
   gridBoxParent: {fileID: 6763292469586952309}
   gridBoxBounds: {fileID: 6763292469388555173}
 --- !u!114 &6519933027682780117
@@ -790,6 +880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   underlyingGrid: {fileID: 435174243144958955}
+  onlyAllowMatchingPieces: 1
 --- !u!1 &6763292469586952309
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,12 +951,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 7b92c6d5a278b3f4396c880056e80445, type: 3}
   m_Color: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 12, y: 9}
+  m_Size: {x: 12, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -900,6 +991,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6763292469336541347}
+  - {fileID: 2374616576023355692}
   - {fileID: 6763292468118285136}
   - {fileID: 6763292469298493706}
   - {fileID: 6763292469388555172}
@@ -922,23 +1014,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bag: {fileID: 8397366328076999275}
   phone: {fileID: 6519933027682780117}
-  trash: {fileID: 8580182634275293695}
-  randomPhoneLayout: 0
-  trashAmount: 4
-  trashObjectsToSpawn:
-  - {fileID: 2854093847866504808, guid: 73f9a6b96b2898844ad63c1550349b17, type: 3}
-  - {fileID: 2854093847866504808, guid: f7b6b2e67f928794fb455c5f640f9732, type: 3}
-  - {fileID: 2854093847866504808, guid: 785113e7f8709e24daa0efea7e2430bf, type: 3}
-  - {fileID: 2854093847866504808, guid: fa63ec50804e9224586be56aa049aa6e, type: 3}
-  - {fileID: 2854093847866504808, guid: 802189a52196a0d408878197c2ae3222, type: 3}
-  partsAmount: 3
-  partsToSpawn:
-  - {fileID: 2269963175470849226, guid: 21a56fb20abbf2e4e86b01034442da10, type: 3}
-  - {fileID: 2269963175470849226, guid: f22e450eef3f97a4597ce98bc7da5e7b, type: 3}
-  - {fileID: 2269963175470849226, guid: ed4c87dfb728cb142a9a8f68b8c1dc25, type: 3}
-  - {fileID: 2269963175470849226, guid: 809a70f747d3c6b4ab04225c30220e3d, type: 3}
-  bugToSpawn: {fileID: 116551055194542601, guid: 691e049cc89f0df4baf9bcc5663da78b,
+  wiretapGrid: {fileID: 1773343344782906813}
+  numBrokenParts: 2
+  partsList:
+  - {fileID: 1784096129420253892, guid: 47d387a16ebcb6f498e5a50e7801ee78, type: 3}
+  - {fileID: 1784096129420253892, guid: 968166e833ffe6147aa6e38db946d50f, type: 3}
+  - {fileID: 1784096129420253892, guid: a1fdd18ee3e88354e8ec3b9d30f634fb, type: 3}
+  - {fileID: 1784096129420253892, guid: 93fb103ceefd67348aa680720ab69856, type: 3}
+  - {fileID: 1784096129420253892, guid: d082c22b8727216468b6af4b378f24eb, type: 3}
+  - {fileID: 1784096129420253892, guid: c17f272621535dc418d5fa371f994783, type: 3}
+  - {fileID: 1784096129420253892, guid: b9f84911dfc7dfa438e285d81fe2a2f4, type: 3}
+  - {fileID: 1784096129420253892, guid: 6295122cf58be93448bcaf354b7530fb, type: 3}
+  - {fileID: 1784096129420253892, guid: 4620d1c1d229d5644ac288c64a3862bd, type: 3}
+  - {fileID: 1784096129420253892, guid: be7f6f51b6fd113448df397e08821089, type: 3}
+  - {fileID: 1784096129420253892, guid: 969e602da53be89498b4941446e58d17, type: 3}
+  - {fileID: 1784096129420253892, guid: f25156a41d8ca5141bdd85797d40a8c3, type: 3}
+  bugToSpawn: {fileID: 1784096129420253892, guid: 41d997886efd97c4b99856e6d2d56f8c,
     type: 3}
+  locationInfo:
+  - disallowedParts: 03000000050000000a000000
+  - disallowedParts: 01000000020000000a000000
+  - disallowedParts: 0a000000
+  - disallowedParts: 0300000005000000090000000a000000
+  - disallowedParts: 010000000200000009000000
+  - disallowedParts: 020000000300000005000000090000000a000000
 --- !u!1 &7638027401814809203
 GameObject:
   m_ObjectHideFlags: 0

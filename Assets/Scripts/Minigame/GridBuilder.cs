@@ -101,12 +101,18 @@ public class GridBuilder : MonoBehaviour
     public GameObject GetGridLocatorObject(int x, int y)
     {
         int index = x + y * (int)gridLayout.x;
+        return GetGridLocatorObject(index);
+    }
+
+    public GameObject GetGridLocatorObject(int index)
+    {
         if(index < gridBoxes.Count)
         {
             return gridBoxes[index];
         }
         return null;
     }
+
 
     public Vector3 GetPositionFromGridCoordinates(int x, int y)
     {
@@ -143,5 +149,10 @@ public class GridBuilder : MonoBehaviour
         }
 
         return closestIndex;
+    }
+
+    public int GetNumGridLocations()
+    {
+        return gridBoxes.Count;
     }
 }
