@@ -92,7 +92,7 @@ public class ConversationManager : MonoBehaviour
 			// obj.transform.localPosition = Vector3.zero;
 			speakerLocator.sceneLocator.SetActive(true);
 			speakerLocator.sceneLocator.GetComponent<DialogueController>().SetText(lineToShow.dialogue);
-			if(lineToShow.speakerAnimation != null)
+			if(DonAnimatorController.Instance != null)
 			{
 				DonAnimatorController.Instance.PlayAnimation(lineToShow.speakerAnimation);
 			}
