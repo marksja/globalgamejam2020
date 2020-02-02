@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<ConversationData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <conversationLines>
+    <ConversationLine SpeakerID="Don" SpeakerAnimationID="Greeting" AudioTriggerID="Yeet" DisplayTime="4">Hey</ConversationLine>
+    <ConversationLine SpeakerID="Homeowner" SpeakerAnimationID="" AudioTriggerID="" DisplayTime="5">Yo, whats up</ConversationLine>
+  </conversationLines>
+</ConversationData>

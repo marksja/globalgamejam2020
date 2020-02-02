@@ -14,7 +14,10 @@ public static class SaveAndLoadXML
         if(File.Exists(file))
         {
             Stream fileStream = File.Open(file, FileMode.Open, FileAccess.Read);
-            return (T)xmlSerializer.Deserialize(fileStream);
+            T obj = (T)xmlSerializer.Deserialize(fileStream);
+            fileStream.Close();
+
+            return obj;
         }
 
         return new T();
@@ -25,10 +28,10 @@ public static class SaveAndLoadXML
         XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
 
         string file = Path.Combine(Application.dataPath, path);
-        if(File.Exists(file))
-        {
-            Stream fileStream = File.Open(file, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            xmlSerializer.Serialize(fileStream, o);
-        }
+
+        Stream fileStream = File.Open(file, FileMode.Create, FileAccess.ReadWrite);
+        xmlSerializer.Serialize(fileStream, o);
+
+        fileStream.Close();
     }
 }
