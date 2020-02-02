@@ -54,4 +54,8 @@ public class FadeIn : MonoBehaviour
 
 		yield return new WaitForEndOfFrame();
 	}
+
+	public void fadeOut(){
+		StartCoroutine(FadeOutC());
+	}
 }
