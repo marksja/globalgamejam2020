@@ -6,7 +6,7 @@ public class GridBuilder : MonoBehaviour
 {
     public Vector2 gridLayout;
     public GameObject gridBoxParent;
-    public BoxCollider2D gridBoxBounds;
+    public BoxCollider gridBoxBounds;
     Vector2 gridSize;
     Vector2 gridOffset;
     Vector2 gridBoxSize;
@@ -36,7 +36,7 @@ public class GridBuilder : MonoBehaviour
         ClearGrid();
 
         gridSize = gridBoxBounds.size;
-        gridOffset = gridBoxBounds.offset;
+        gridOffset = gridBoxBounds.center;
 
         gridBoxSize = new Vector2(gridSize.x / gridLayout.x, gridSize.y / gridLayout.y);
         int numGridItems = (int)gridLayout.x * (int)gridLayout.y;

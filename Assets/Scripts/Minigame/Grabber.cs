@@ -21,13 +21,26 @@ public class Grabber : MonoBehaviour
                 DropObjectUnderMouse();
             }
         }
+        if(grabbedObject != null)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit[] hits = Physics.RaycastAll(ray);
+            for(int i = 0; i < hits.Length; ++i)
+            {
+                GameObject objectUnderMouse = hits[i].collider.gameObject;
+                if(objectUnderMouse.name == "Just a big plane")
+                {
+                    grabbedObject.transform.position = hits[i].point;
+                }
+            }
+        }
     }
 
     public void GrabObjectUnderMouse()
     {
         //Raycast under this shit
-        Ray ray = new Ray(transform.position, Vector3.forward);
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector3.forward);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit[] hits = Physics.RaycastAll(ray);
         for(int i = 0; i < hits.Length; ++i)
         {
             GameObject objectUnderMouse = hits[i].collider.gameObject;
@@ -36,7 +49,7 @@ public class Grabber : MonoBehaviour
             {
                 grabbedObject = grabbable;
                 grabbedObject.transform.parent = transform;
-                grabbedObject.transform.position = new Vector3(grabbedObject.transform.position.x, grabbedObject.transform.position.y, this.transform.position.z + 0.1f);
+                //grabbedObject.transform.position = new Vector3(grabbedObject.transform.position.x, grabbedObject.transform.position.y, this.transform.position.z + 0.1f);
                 break;
             }
         }  
@@ -45,8 +58,8 @@ public class Grabber : MonoBehaviour
     public void DropObjectUnderMouse()
     {
         //Raycast under this shit
-        Ray ray = new Ray(transform.position, Vector3.forward);
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector3.forward);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit[] hits = Physics.RaycastAll(ray);
         for(int i = 0; i < hits.Length; ++i)
         {
             GameObject objectUnderMouse = hits[i].collider.gameObject;

@@ -14,6 +14,9 @@ public class RepairManager : MonoBehaviour
 
     public List<CircuitLocation> locationInfo;
 
+    public UnityEngine.Events.UnityEvent onPuzzleComplete;
+    bool puzzleComplete = false;
+
     List<CircuitPiece> circuitPieces;
 
     // Start is called before the first frame update
@@ -22,6 +25,11 @@ public class RepairManager : MonoBehaviour
         circuitPieces = new List<CircuitPiece>();
     }
     
+    void Update()
+    {
+        AttemptToFinishPuzzle();
+    }
+
     [ContextMenu("Create Puzzle")]
     public void CreatePuzzle()
     {
@@ -129,13 +137,11 @@ public class RepairManager : MonoBehaviour
 
     public void AttemptToFinishPuzzle()
     {
-        if(VerifyPuzzle())
+        if(!puzzleComplete && VerifyPuzzle())
         {
-            Debug.Log("Yep");
-        }
-        else
-        {
-            Debug.Log("Nope");
+            Debug.Log("Yay");
+            onPuzzleComplete.Invoke();
+            puzzleComplete = true;
         }
     }
 
@@ -143,20 +149,23 @@ public class RepairManager : MonoBehaviour
     {
         int numBroken = phone.GetNumberOfBrokenObjectsInGrid();
         int numCorrect = phone.GetNumberOfCorrectObjectsInGrid();
-        int numBugs = wiretapGrid.GetNumberOfBugsInGrid();
+        int numBugs = wiretapGrid.GetNumberOfCorrectObjectsInGrid();
 
         if(numBroken > 0)
         {
+            Debug.Log("Still broken");
             return false;
         }
 
         if(numCorrect != circuitPieces.Count)
         {
+            Debug.Log("Circuit pieces missing");
             return false;
         }
 
         if(numBugs != 1)
         {
+            Debug.Log("Missing bugs");
             return false;
         }
 
