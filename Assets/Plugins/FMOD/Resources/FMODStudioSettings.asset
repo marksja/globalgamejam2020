@@ -15,7 +15,7 @@ MonoBehaviour:
   SwitchSettingsMigration: 1
   HasSourceProject: 0
   HasPlatforms: 0
-  sourceProjectPath: FMOD\GGJ2020\GGJ2020.fspro
+  sourceProjectPath: FMOD/GGJ2020/GGJ2020.fspro
   sourceBankPath: Assets\Resources\FMOD\Desktop
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
@@ -78,6 +78,8 @@ MonoBehaviour:
   Plugins: []
   MasterBanks:
   - Master
-  Banks: []
+  Banks:
+  - Entities
+  - Windows
   BanksToLoad: []
   LiveUpdatePort: 9264
