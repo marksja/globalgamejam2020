@@ -67,6 +67,7 @@ public class ConversationManager : MonoBehaviour
 	{
 		if (lineNumber >= storedData.conversationLines.Count)
 		{
+			FadeIn.Instance.FadeOut();
 			return;
 		}
 

@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
+    path: Assets/Scenes/FrontDoorSequence.unity
+    guid: 30d229d708fd6b04cafb9b74b96fede9
+  - enabled: 1
+    path: Assets/Scenes/RepairSequence.unity
+    guid: a1927762dec6fac4883b59cb0d809b4b
+  - enabled: 1
+    path: Assets/Scenes/NightTransition.unity
+    guid: d4ed341706d2f654c86f0b181b633f93
+  - enabled: 1
+    path: Assets/Scenes/ListeningSequence.unity
+    guid: ff490547a2f8b9f4cb9cda4cb0bc84b6
   m_configObjects: {}
