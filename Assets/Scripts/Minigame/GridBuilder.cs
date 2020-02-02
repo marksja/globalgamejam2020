@@ -44,6 +44,7 @@ public class GridBuilder : MonoBehaviour
         {
             GameObject obj = new GameObject();
             obj.transform.parent = gridBoxParent.transform;
+            obj.transform.localScale = Vector3.one;
 
             //Silly Jacob, we don't need colliders
             //BoxCollider2D collider = obj.AddComponent<BoxCollider2D>();

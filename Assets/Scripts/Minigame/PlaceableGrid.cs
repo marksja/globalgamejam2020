@@ -18,7 +18,7 @@ public class PlaceableGrid : MonoBehaviour
         }
 
         grabbable.transform.parent = newParent.transform;
-        grabbable.transform.localPosition = Vector3.back * 0.1f;
+        grabbable.transform.localPosition = Vector3.zero;
         return true;
     }
 
@@ -32,7 +32,7 @@ public class PlaceableGrid : MonoBehaviour
         }
 
         obj.transform.parent = newParent.transform;
-        obj.transform.localPosition = new Vector3(0, 0, obj.transform.localPosition.z);
+        obj.transform.localPosition = Vector3.zero;
         return true;
     }
 
@@ -58,7 +58,7 @@ public class PlaceableGrid : MonoBehaviour
         }
 
         grabbable.transform.parent = newParent.transform;
-        grabbable.transform.localPosition = new Vector3(0,0, grabbable.transform.localPosition.z);
+        grabbable.transform.localPosition = Vector3.zero;
         return true;
     }
 

@@ -27,6 +27,9 @@ public class RepairManager : MonoBehaviour
     {
         Shuffle(ref partsList);
         int partListIndex = 0;
+
+        Vector3 tempscaleholderbecausebullshit;
+
         for(int i = 0; i < phone.underlyingGrid.GetNumGridLocations(); ++i)
         {
             if(partListIndex >= partsList.Count)
@@ -56,8 +59,16 @@ public class RepairManager : MonoBehaviour
             placementPiece.disableGrabbing = true;
 
             //Place them both on the grid
+            tempscaleholderbecausebullshit = partPiece.transform.localScale;
             phone.PlaceObjectAt<CircuitPiece>(partPiece, i);
+            partPiece.transform.localPosition += Vector3.back * 0.4f;
+            partPiece.transform.localScale = tempscaleholderbecausebullshit;
+
+            tempscaleholderbecausebullshit = placementPiece.transform.localScale;
             phone.PlaceObjectAt<CircuitPiece>(placementPiece, i);
+            placementPiece.transform.localPosition += Vector3.back * 0.4f;
+            placementPiece.transform.localScale = tempscaleholderbecausebullshit;
+
             partPiece.SetGameObjectSprite();
             placementPiece.SetGameObjectSprite();
 
@@ -78,17 +89,20 @@ public class RepairManager : MonoBehaviour
                 circuitPieces[j].SetGameObjectSprite();
 
                 //And spawn a correct one in the bag
-                GameObject correctPart = Instantiate(circuitPieces[j].gameObject, Vector3.back * 0.4f, Quaternion.identity);
+                GameObject correctPart = Instantiate(circuitPieces[j].gameObject, Vector3.zero, Quaternion.identity);
                 CircuitPiece piece = correctPart.GetComponent<CircuitPiece>();
                 piece.type = GrabbableObjectType.Part;
                 piece.SetGameObjectSprite();
                 //TODO: Replace this with placing it on the table
+                tempscaleholderbecausebullshit = piece.transform.localScale;
                 bag.PlaceObjectAt<CircuitPiece>(piece, j);
+                piece.transform.localPosition += Vector3.back * 0.4f;
+                piece.transform.localScale = tempscaleholderbecausebullshit;
             }
         }
 
-        GameObject bug = Instantiate(bugToSpawn, Vector3.back * 0.4f, Quaternion.identity);
-        GameObject bugHolder = Instantiate(bugToSpawn, Vector3.back * 0.4f, Quaternion.identity);
+        GameObject bug = Instantiate(bugToSpawn, Vector3.zero, Quaternion.identity);
+        GameObject bugHolder = Instantiate(bugToSpawn, Vector3.zero, Quaternion.identity);
         CircuitPiece bugGrabbable = bug.GetComponent<CircuitPiece>();
         CircuitPiece bugHolderGrabbable = bugHolder.GetComponent<CircuitPiece>();
 
@@ -102,9 +116,15 @@ public class RepairManager : MonoBehaviour
         bugGrabbable.type = GrabbableObjectType.Part;
         bugGrabbable.SetGameObjectSprite();
 
-        //TODO: Replace this with placing it on the table
+        tempscaleholderbecausebullshit = bugGrabbable.transform.localScale;
         bag.PlaceObjectAt<CircuitPiece>(bugGrabbable, j);
+        bugGrabbable.transform.localPosition += Vector3.back * 0.4f;
+        bugGrabbable.transform.localScale = tempscaleholderbecausebullshit;
+
+        tempscaleholderbecausebullshit = bugHolderGrabbable.transform.localScale;
         wiretapGrid.PlaceObjectAt<CircuitPiece>(bugHolderGrabbable, 0);
+        bugHolderGrabbable.transform.localPosition += Vector3.back * 0.4f;
+        bugHolderGrabbable.transform.localScale = tempscaleholderbecausebullshit;
     }
 
     public void AttemptToFinishPuzzle()
