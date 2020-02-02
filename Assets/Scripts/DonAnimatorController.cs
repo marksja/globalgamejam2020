@@ -6,9 +6,11 @@ using UnityEngine;
 public class DonAnimatorController : MonoBehaviour
 {
     Animator anim;
+	public static DonAnimatorController Instance;
 
-	void Start()
+	void Awake()
 	{
+		Instance = this;		
 		anim = GetComponent<Animator>();
 	}
 
@@ -31,5 +33,15 @@ public class DonAnimatorController : MonoBehaviour
 	void PlayNTest()
 	{
 		anim.Play("Negative");
+	}
+	[ContextMenu("Play Sheepish")]
+	void PlaySTest()
+	{
+		anim.Play("Sheepish");
+	}
+	[ContextMenu("Play Thinking")]
+	void PlayTTest()
+	{
+		anim.Play("Thinking");
 	}
 }
