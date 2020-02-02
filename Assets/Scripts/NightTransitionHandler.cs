@@ -21,6 +21,6 @@ public class NightTransitionHandler : MonoBehaviour
     }
 
     void startFadeOut(){
-        fader.GetComponent<FadeIn>().fadeOut();
+        fader.GetComponent<FadeIn>().FadeOut();
     }
 }

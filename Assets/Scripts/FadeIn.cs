@@ -13,8 +13,11 @@ public class FadeIn : MonoBehaviour
 	public UnityEvent eventsOnFadeOut;
 	public Image fadeImage;
 
+	public static FadeIn Instance;
+
 	void Start()
 	{
+		Instance = this;
 		StartCoroutine(FadeInC());
 		eventsOnStart.Invoke();
 	}
@@ -55,7 +58,7 @@ public class FadeIn : MonoBehaviour
 		yield return new WaitForEndOfFrame();
 	}
 
-	public void fadeOut(){
+	public void FadeOut(){
 		StartCoroutine(FadeOutC());
 	}
 }
