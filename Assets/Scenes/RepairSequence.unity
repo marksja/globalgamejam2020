@@ -1844,6 +1844,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6946457483416950685, guid: 73e54cb6561da524c8dc9a30a242664f,
         type: 3}
+      propertyPath: partsListS.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946457483416950685, guid: 73e54cb6561da524c8dc9a30a242664f,
+        type: 3}
       propertyPath: onPuzzleComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1976783664}
@@ -1862,6 +1867,66 @@ PrefabInstance:
       propertyPath: finalInstruction
       value: 
       objectReference: {fileID: 1527865257}
+    - target: {fileID: 6946457483416950685, guid: 73e54cb6561da524c8dc9a30a242664f,
+        type: 3}
+      propertyPath: partsListS.Array.data[0]
+      value: Part1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946457483416950685, guid: 73e54cb6561da524c8dc9a30a242664f,
+        type: 3}
+      propertyPath: partsListS.Array.data[1]
+      value: Part2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946457483416950685, guid: 73e54cb6561da524c8dc9a30a242664f,
+        type: 3}
+      propertyPath: partsListS.Array.data[2]
+      value: Part3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946457483416950685, guid: 73e54cb6561da524c8dc9a30a242664f,
+        type: 3}
+      propertyPath: partsListS.Array.data[3]
+      value: Part4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946457483416950685, guid: 73e54cb6561da524c8dc9a30a242664f,
+        type: 3}
+      propertyPath: partsListS.Array.data[4]
+      value: Part5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946457483416950685, guid: 73e54cb6561da524c8dc9a30a242664f,
+        type: 3}
+      propertyPath: partsListS.Array.data[5]
+      value: Part6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946457483416950685, guid: 73e54cb6561da524c8dc9a30a242664f,
+        type: 3}
+      propertyPath: partsListS.Array.data[6]
+      value: Part7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946457483416950685, guid: 73e54cb6561da524c8dc9a30a242664f,
+        type: 3}
+      propertyPath: partsListS.Array.data[7]
+      value: Part8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946457483416950685, guid: 73e54cb6561da524c8dc9a30a242664f,
+        type: 3}
+      propertyPath: partsListS.Array.data[8]
+      value: Part9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946457483416950685, guid: 73e54cb6561da524c8dc9a30a242664f,
+        type: 3}
+      propertyPath: partsListS.Array.data[9]
+      value: Part10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946457483416950685, guid: 73e54cb6561da524c8dc9a30a242664f,
+        type: 3}
+      propertyPath: partsListS.Array.data[10]
+      value: Part11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946457483416950685, guid: 73e54cb6561da524c8dc9a30a242664f,
+        type: 3}
+      propertyPath: partsListS.Array.data[11]
+      value: Part12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73e54cb6561da524c8dc9a30a242664f, type: 3}
 --- !u!1 &1687258581

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
+using System.IO;
 
 public class RepairManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class RepairManager : MonoBehaviour
 
     public int numBrokenParts;
     public List<GameObject> partsList;
+    public List<string> partsListS;
     public GameObject bugToSpawn;
 
     public List<CircuitLocation> locationInfo;
@@ -28,6 +30,8 @@ public class RepairManager : MonoBehaviour
     void Start()
     {
         circuitPieces = new List<CircuitPiece>();
+
+        
     }
     
     void Update()
@@ -38,30 +42,37 @@ public class RepairManager : MonoBehaviour
     [ContextMenu("Create Puzzle")]
     public void CreatePuzzle()
     {
-        Shuffle(ref partsList);
+        Shuffle(ref partsListS);
         int partListIndex = 0;
 
         Vector3 tempscaleholderbecausebullshit;
 
+        Debug.Log("GetNumGridLocations: " + phone.underlyingGrid.GetNumGridLocations());
+
         for(int i = 0; i < phone.underlyingGrid.GetNumGridLocations(); ++i)
         {
-            if(partListIndex >= partsList.Count)
+            if(partListIndex >= partsListS.Count)
             {
-                partListIndex = partListIndex % partsList.Count;
+                partListIndex = partListIndex % partsListS.Count;
             }
             
             while(locationInfo.Count > i && locationInfo[i].disallowedParts.Contains(partListIndex+1))
             {
                 partListIndex++;
-                if(partListIndex >= partsList.Count)
+                if(partListIndex >= partsListS.Count)
                 {
-                    partListIndex = partListIndex % partsList.Count;
+                    partListIndex = partListIndex % partsListS.Count;
                 }
             }
-            
+
             //Spawn a correct part and a missing part at each location
-            GameObject part = Instantiate(partsList[partListIndex], Vector3.back * 0.4f, Quaternion.identity);
-            GameObject placement = Instantiate(partsList[partListIndex], Vector3.back * 0.3f, Quaternion.identity);
+            //GameObject part = Instantiate(partsList[partListIndex], Vector3.back * 0.4f, Quaternion.identity);
+            Debug.Log(partsListS[partListIndex]);
+            GameObject part = Instantiate(Resources.Load(partsListS[partListIndex]) as GameObject, Vector3.back * 0.4f, Quaternion.identity);
+            if(part == null)
+                Debug.Log("Part " + partsList[partListIndex] + " failed to instantiate.");
+            //GameObject placement = Instantiate(partsList[partListIndex], Vector3.back * 0.3f, Quaternion.identity);
+            GameObject placement = Instantiate(Resources.Load(partsListS[partListIndex]) as GameObject, Vector3.back * 0.3f, Quaternion.identity);
 
             CircuitPiece partPiece = part.GetComponent<CircuitPiece>();
             CircuitPiece placementPiece = placement.GetComponent<CircuitPiece>();
@@ -192,6 +203,8 @@ public class RepairManager : MonoBehaviour
 
     public void Shuffle<T>(ref List<T> list)  
     {  
+        if(list.Count == null)
+            Debug.LogError("No data in list.Count");
         int n = list.Count;  
         while (n > 1) {  
             n--;  
