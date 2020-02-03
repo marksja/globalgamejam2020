@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<ConversationData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <conversationLines>
+    <ConversationLine SpeakerID="Instruction" SpeakerAnimationID="" AudioTriggerID="" DisplayTime="">Take out the broken parts and replace them!</ConversationLine>
+    <ConversationLine SpeakerID="Instruction" SpeakerAnimationID="" AudioTriggerID="" DisplayTime="">You forgot about the wire tap...</ConversationLine>
+	<ConversationLine SpeakerID="Instruction" SpeakerAnimationID="" AudioTriggerID="" DisplayTime="">...good.</ConversationLine>
+  </conversationLines>
+</ConversationData>

@@ -1,0 +1,17 @@
+<ConversationData>
+	<conversationLines>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">...</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">You there?</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">It's Linda, we spoke the other day.</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">...</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">Yeah, at the gala.</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">In the red dress.</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">...</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">No, he's not in why?</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">Oh.</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">...</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">Hold on, I think I hear something.</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">...</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">*click*</ConversationLine>
+	</conversationLines>
+</ConversationData>

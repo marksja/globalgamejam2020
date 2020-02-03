@@ -10,6 +10,8 @@ public class ConversationManager : MonoBehaviour
 	public List<SpeakerLocator> speakerLocations;
 	public Dictionary<string, SpeakerLocator> speakerLocationDictionary;
 
+	public List<string> bulkConversationLoad;
+
 	public int currentConversationLine = 0;
 	public float countdownToNextLine;
 
@@ -25,7 +27,10 @@ public class ConversationManager : MonoBehaviour
 			speakerLocationDictionary.Add(locator.speakerID, locator);
 		}
 
-		LoadConversation(conversationToLoadOnStart);
+		if(bulkConversationLoad == null)
+			LoadConversation(conversationToLoadOnStart);
+		else
+			LoadConversation(bulkConversationLoad);
 	}
 
 	//Update is called Don, but only when it's wearing a mask
@@ -47,7 +52,17 @@ public class ConversationManager : MonoBehaviour
 
 	public void LoadConversation(string filePath)
 	{
+		
 		ConversationData data = SaveAndLoadXML.LoadFromXML<ConversationData>(filePath);
+		LoadConversation(data);
+	}
+
+	public void LoadConversation(List<string> filePaths)
+	{
+		Random.seed = (int)(Time.time + Time.deltaTime * 10000);
+		int randomNum = (int)Random.Range(0.0f, (float)filePaths.Count);
+		Debug.Log(randomNum);
+		ConversationData data = SaveAndLoadXML.LoadFromXML<ConversationData>(filePaths[randomNum]);
 		LoadConversation(data);
 	}
 

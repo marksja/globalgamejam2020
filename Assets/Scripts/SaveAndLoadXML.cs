@@ -10,7 +10,7 @@ public static class SaveAndLoadXML
     {
         XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
 
-        string file = Path.Combine(Application.dataPath, path);
+        string file = Path.Combine(Application.streamingAssetsPath, path);
         if(File.Exists(file))
         {
             Stream fileStream = File.Open(file, FileMode.Open, FileAccess.Read);

@@ -1,8 +1,0 @@
-<ConversationData>
-	<conversationLines>
-		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">Hey you never got back to me.</ConversationLine>
-		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">...</ConversationLine>
-		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">This is a very one-sided conversation.</ConversationLine>
-		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">Fukkin LUL</ConversationLine>
-	</conversationLines>
-</ConversationData>

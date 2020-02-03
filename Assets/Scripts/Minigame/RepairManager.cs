@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class RepairManager : MonoBehaviour
 {
@@ -18,6 +19,10 @@ public class RepairManager : MonoBehaviour
     bool puzzleComplete = false;
 
     List<CircuitPiece> circuitPieces;
+
+    public GameObject firstInstruction, secondInstruction, finalInstruction;
+
+    public StudioEventEmitter pickup, place;
 
     // Start is called before the first frame update
     void Start()
@@ -153,21 +158,34 @@ public class RepairManager : MonoBehaviour
 
         if(numBroken > 0)
         {
-            Debug.Log("Still broken");
+            //Debug.Log("Still broken");
+            firstInstruction.SetActive(true);
+            secondInstruction.SetActive(false);
+            finalInstruction.SetActive(false);
             return false;
         }
 
         if(numCorrect != circuitPieces.Count)
         {
-            Debug.Log("Circuit pieces missing");
+            //Debug.Log("Circuit pieces missing");
+            firstInstruction.SetActive(true);
+            secondInstruction.SetActive(false);
+            finalInstruction.SetActive(false);
             return false;
         }
 
         if(numBugs != 1)
         {
-            Debug.Log("Missing bugs");
+            //Debug.Log("Missing bugs");
+            firstInstruction.SetActive(false);
+            secondInstruction.SetActive(true);
+            finalInstruction.SetActive(false);
             return false;
         }
+
+        firstInstruction.SetActive(false);
+        secondInstruction.SetActive(false);
+        finalInstruction.SetActive(true);
 
         return true;
     }
@@ -182,6 +200,14 @@ public class RepairManager : MonoBehaviour
             list[k] = list[n];  
             list[n] = value;  
         }  
+    }
+
+    public void playPickup(){
+        pickup.Play();
+    }
+
+    public void playPlace(){
+        place.Play();
     }
 }
 

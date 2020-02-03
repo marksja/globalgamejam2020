@@ -1,0 +1,12 @@
+<ConversationData>
+	<conversationLines>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">Look, all I'm saying is that this guy has no idea.</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">Nope. He just waltzed up to my door in that goofy looking suit.</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">Yeah, yeah. I know, I know. It's weird, but I just don't know what to do about it!</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">...</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">The police? What the hell are they gonna do?</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">I mean, whatever. At least this stupid phone is working again.</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">Alright, I'll talk to you later. Bye.</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">*click*</ConversationLine>
+	</conversationLines>
+</ConversationData>

@@ -1,0 +1,10 @@
+<ConversationData>
+	<conversationLines>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">The hell do you want?</ConversationLine>
+		<ConversationLine SpeakerID="Don" AudioTriggerID="Don_Speak" SpeakerAnimationID="Greeting" DisplayTime="10">I'm here to repair your phone!</ConversationLine>
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="10">I didn't order any phone repair, buzz off!</ConversationLine>
+		<ConversationLine SpeakerID="Don" AudioTriggerID="Don_Speak" SpeakerAnimationID="Thinking" DisplayTime="10">Well, I've got an order right here signed and dated!</ConversationLine>
+		<ConversationLine SpeakerID="Don" AudioTriggerID="Don_Speak" SpeakerAnimationID="Sheepish" DisplayTime="10">So let's make this a quick job and you'll be on your way!</ConversationLine>		
+		<ConversationLine SpeakerID="Homeowner" AudioTriggerID="Homeowner_Speak" DisplayTime="4">Oh, well come on in then. Phones right here.</ConversationLine>
+	</conversationLines>
+</ConversationData>
